@@ -6,8 +6,11 @@ from litellm import completion
 # You can replace these with other models as needed but this is the one we suggest for this lab.
 MODEL = "groq/llama-3.3-70b-versatile"
 
-api_key = "hardcoded API_KEY HERE"
-
+def get_api_key() -> str:
+    key = os.getenv("GROQ_API_KEY")
+    if not key:
+        raise ValueError("GROQ_API_KEY environment variable not set")
+    return key
 
 def get_itinerary(destination: str) -> Dict[str, Any]:
     """
@@ -21,6 +24,7 @@ def get_itinerary(destination: str) -> Dict[str, Any]:
 
     # See https://docs.litellm.ai/docs/ for reference.
 
+    key = get_api_key()
     data = ...
     
 
